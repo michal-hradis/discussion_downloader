@@ -5,7 +5,7 @@ import requests
 import argparse
 import datetime
 from bs4 import BeautifulSoup
-from downlod_specific_discussions import download_discussion
+from download_specific_discussions import download_discussion
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
@@ -48,6 +48,7 @@ def main():
     date = datetime.date(args.year, args.month, args.day)
     with requests.Session() as session:
         while True:
+            time.sleep(random.uniform(1, 2))
             links = get_all_articles(session, date)
             for link in links:
                 output_path = date.strftime('%Y-%m-%d') + '_' +link.split('/')[-1]
